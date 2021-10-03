@@ -1,0 +1,9 @@
+{
+    "name": "CloudedMountain.Neovim.Editor",
+    "references": [],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

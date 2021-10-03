@@ -1,0 +1,20 @@
+{
+  "name": "com.cloudedmountain.ide.neovim",
+  "version": "0.0.1",
+  "displayName": "Neovim Editor",
+  "description": "Code editor integration for supporting Neovim as code editor for unity. Adds support for generating csproj files for intellisense purposes, auto discovery of installations, etc.",
+  "unity": "2019.1",
+  "documentationUrl": "https://example.com/",
+  "changelogUrl": "https://example.com/changelog.html",
+  "licensesUrl": "https://example.com/licensing.html",
+ "keywords": [
+    "nvim",
+    "neovim",
+    "vim"
+  ],
+  "author": {
+    "name": "Clouded Mountain",
+    "email": "gg@cloudedmountain.com",
+    "url": "https://www.cloudedmountain.com"
+  }
+}

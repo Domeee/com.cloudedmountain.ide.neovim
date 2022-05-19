@@ -23,21 +23,12 @@ Make Neovim a Unity first-class citizen!
 The project currently is in early stage development. Expect errors and breaking changes.
 The current version `0.0.1` was tested on Arch Linux only. The project currently does not support operating systems other than linux.
 
-## Prerequisites
-
-Neovim currently does not provide client/server functionality to act as a command server. To open files in an existing instance of neovim, [neovim-remote](https://github.com/mhinz/neovim-remote) is required. There is an active neovim PR in the works, see [GitHub PR](https://github.com/neovim/neovim/pull/17439).
-
-```
-yay -S neovim-remote
-```
-
 ## Installation
 
-1. Download and prepare the neovim unity package
+1. Download
 
 ```
 git clone git@github.com:Domeee/com.cloudedmountain.ide.neovim.git
-sudo chmod +x ./com.cloudedmountain.ide.neovim.sh
 ```
 
 2. Add the neovim unity package to unity
@@ -46,21 +37,27 @@ sudo chmod +x ./com.cloudedmountain.ide.neovim.sh
 Window > Package Manager > Add package from disk > select package.json
 ```
 
-1. Set neovim as external script edtior
+3. Set neovim as external script edtior
 
 ```
 Edit > Preferences > External Tools > External Script Editor > select Neovim
 ```
 
+4. Start an nvim server
+
+```
+# "/tmp/nvimsocket" is the name of the server and currently hardcoded
+nvim --listen /tmp/nvimsocket
+```
+
 ## Usage
 
 The neovim unity package automatically synchronizes the unity solution files if a new file was added, an existing file was deleted or renamed.
-The unity solution file synchronization can be manually triggered via `Assets > Sync Unity Solution`
 
 ## Todo list
 
-- [] Streamline installation process
-- [] Replace `neovim-remote` dependency asap, see [GitHub PR](https://github.com/neovim/neovim/pull/17439)
+- [ ] Streamline installation process
+- [x] Replace `neovim-remote` dependency asap, see [GitHub PR](https://github.com/neovim/neovim/pull/17439)
 
 ## Troubleshooting
 

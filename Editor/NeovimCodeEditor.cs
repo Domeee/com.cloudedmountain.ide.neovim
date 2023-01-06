@@ -87,7 +87,44 @@ public class NeovimCodeEditor : IExternalCodeEditor
   public void Initialize(string editorInstallationPath) { }
 
   // 	Unity calls this methodf when it populates "Preferences/External Tools" in order to allow the code editor to generate necessary GUI. For example, when creating an an argument field for modifying the arguments sent to the code editor.
-  public void OnGUI() { }
+  public void OnGUI()
+  {
+    EditorGUILayout.LabelField("Generate .csproj files for:");
+    EditorGUI.indentLevel++;
+    SettingsButton(ProjectGenerationFlag.Embedded, "Embedded packages", "");
+    SettingsButton(ProjectGenerationFlag.Local, "Local packages", "");
+    SettingsButton(ProjectGenerationFlag.Registry, "Registry packages", "");
+    SettingsButton(ProjectGenerationFlag.Git, "Git packages", "");
+    SettingsButton(ProjectGenerationFlag.BuiltIn, "Built-in packages", "");
+#if UNITY_2019_3_OR_NEWER
+    SettingsButton(ProjectGenerationFlag.LocalTarBall, "Local tarball", "");
+#endif
+    SettingsButton(ProjectGenerationFlag.Unknown, "Packages from unknown sources", "");
+    RegenerateProjectFiles();
+    EditorGUI.indentLevel--;
+
+    HandledExtensionsString = EditorGUILayout.TextField(new GUIContent("Extensions handled: "), HandledExtensionsString);
+  }
+
+  void RegenerateProjectFiles()
+  {
+    var rect = EditorGUI.IndentedRect(EditorGUILayout.GetControlRect(new GUILayoutOption[] { }));
+    rect.width = 252;
+    if (GUI.Button(rect, "Regenerate project files"))
+    {
+      _projectGeneration.Sync();
+    }
+  }
+
+  void SettingsButton(ProjectGenerationFlag preference, string guiMessage, string toolTip)
+  {
+    var prevValue = _projectGeneration.AssemblyNameProvider.ProjectGenerationFlag.HasFlag(preference);
+    var newValue = EditorGUILayout.Toggle(new GUIContent(guiMessage, toolTip), prevValue);
+    if (newValue != prevValue)
+    {
+      _projectGeneration.AssemblyNameProvider.ToggleProjectGeneration(preference);
+    }
+  }
 
   // The external code editor needs to handle the request to open a file.
   public bool OpenProject(string filePath = "", int line = -1, int column = -1)

@@ -65,6 +65,9 @@ The neovim unity package automatically synchronizes the unity solution files if 
 
 See [open issue @ omnisharp-roslyn](https://github.com/OmniSharp/omnisharp-roslyn/issues/2250), [open issue @ neovim](https://github.com/neovim/neovim/issues/14042)
 
+> The file opened in neovim is empty
+Filepaths with spaces are currently not supported.
+
 ## References
 
 - [Unity Editor Reference Source Code](https://github.com/Unity-Technologies/UnityCsReference/tree/master)
